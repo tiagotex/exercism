@@ -1,15 +1,29 @@
-require "prime"
 class Raindrops
-  def self.convert(n)
-    factors = Prime.prime_division(n)
-    output = '' 
-
-    unless factors.empty?
-      output << 'Pling' if factors.map { |n| n.include?(3)}.include?(true)
-      output << 'Plang' if factors.map { |n| n.include?(5)}.include?(true)
-      output << 'Plong' if factors.map { |n| n.include?(7)}.include?(true)
-    end
+  def self.convert(number)
+    @number = number
     
-    output.empty? ? n.to_s : output
+    unless pling? || plang? || plong?
+      return number.to_s
+    end
+
+    output = '' 
+    output << 'Pling' if  pling?
+    output << 'Plang' if  plang?
+    output << 'Plong' if  plong?
+    output
+  end
+
+
+  private
+  def self.pling?
+    (@number % 3) == 0
+  end
+
+  def self.plang?
+    (@number % 5) == 0
+  end
+
+  def self.plong?
+    (@number % 7) == 0
   end
 end
