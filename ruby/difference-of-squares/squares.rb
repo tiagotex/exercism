@@ -7,15 +7,11 @@ class Squares
   attr_reader :number
 
   def square_of_sums
-    sum = 0
-    (0..number).each {|n| sum += n}
-    sum*sum
+    (0..number).reduce(:+)**2
   end
 
   def sum_of_squares
-    sum = 0
-    (0..number).each {|n| sum += n*n}
-    sum
+    (0..number).inject { |sum, n| sum += n ** 2 }
   end
 
   def difference 
